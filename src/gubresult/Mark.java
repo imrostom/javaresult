@@ -5,6 +5,13 @@
  */
 package gubresult;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dev
@@ -16,6 +23,8 @@ public class Mark extends javax.swing.JFrame {
      */
     public Mark() {
         initComponents();
+        studentCombobox();
+        subjectCombobox();
     }
 
     /**
@@ -34,8 +43,11 @@ public class Mark extends javax.swing.JFrame {
         Student = new javax.swing.JButton();
         Dashboard = new javax.swing.JButton();
         Mark = new javax.swing.JButton();
-        Developed = new javax.swing.JButton();
+        Subject = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Developed = new javax.swing.JButton();
+        Teacher = new javax.swing.JButton();
+        Routine = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -46,7 +58,7 @@ public class Mark extends javax.swing.JFrame {
         assignment = new javax.swing.JTextField();
         mid_mark = new javax.swing.JTextField();
         ct_mark = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        saveMark = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(new java.awt.Color(175, 19, 19));
@@ -90,6 +102,16 @@ public class Mark extends javax.swing.JFrame {
             }
         });
 
+        Subject.setText("Subject");
+        Subject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubjectActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel1.setText("V1.0");
+
         Developed.setText("Developed By");
         Developed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,8 +119,19 @@ public class Mark extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("V1.0");
+        Teacher.setText("Teacher");
+        Teacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TeacherActionPerformed(evt);
+            }
+        });
+
+        Routine.setText("Routine");
+        Routine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RoutineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -107,11 +140,14 @@ public class Mark extends javax.swing.JFrame {
             .addComponent(Student, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Mark, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Developed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Subject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(Developed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Teacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Routine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +158,14 @@ public class Mark extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Mark)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Subject)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Routine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Teacher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Developed)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -189,23 +231,52 @@ public class Mark extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        studentid.setSelectedItem(studentid);
         studentid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 studentidActionPerformed(evt);
             }
         });
 
-        subjectid.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         final_mark.setText("Final Mark");
+        final_mark.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                final_markFocusGained(evt);
+            }
+        });
 
         assignment.setText("Assignment");
+        assignment.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                assignmentFocusGained(evt);
+            }
+        });
+        assignment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignmentActionPerformed(evt);
+            }
+        });
 
         mid_mark.setText("Mid Mark");
+        mid_mark.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mid_markFocusGained(evt);
+            }
+        });
 
         ct_mark.setText("Ct Mark");
+        ct_mark.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ct_markFocusGained(evt);
+            }
+        });
 
-        jButton1.setText("Save Mark");
+        saveMark.setText("Save Mark");
+        saveMark.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMarkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -232,7 +303,7 @@ public class Mark extends javax.swing.JFrame {
                                     .addComponent(final_mark)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(199, 199, 199)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(saveMark, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -253,7 +324,7 @@ public class Mark extends javax.swing.JFrame {
                     .addComponent(final_mark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ct_mark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jButton1)
+                .addComponent(saveMark)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -263,7 +334,7 @@ public class Mark extends javax.swing.JFrame {
 
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
         this.setVisible(false);
-        new Mark().setVisible(true);
+        new Dashboard().setVisible(true);
     }//GEN-LAST:event_DashboardActionPerformed
 
     private void StudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentActionPerformed
@@ -276,14 +347,99 @@ public class Mark extends javax.swing.JFrame {
         new Mark().setVisible(true);
     }//GEN-LAST:event_MarkActionPerformed
 
-    private void DevelopedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevelopedActionPerformed
+    private void SubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubjectActionPerformed
         this.setVisible(false);
-        new Developed().setVisible(true);
-    }//GEN-LAST:event_DevelopedActionPerformed
+        new Subject().setVisible(true);
+    }//GEN-LAST:event_SubjectActionPerformed
 
     private void studentidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_studentidActionPerformed
+
+    private void assignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assignmentActionPerformed
+
+    private void ct_markFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ct_markFocusGained
+        // TODO add your handling code here:
+        ct_mark.setText("");
+    }//GEN-LAST:event_ct_markFocusGained
+
+    private void assignmentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_assignmentFocusGained
+        // TODO add your handling code here:
+        assignment.setText("");
+    }//GEN-LAST:event_assignmentFocusGained
+
+    private void mid_markFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mid_markFocusGained
+        // TODO add your handling code here:
+        mid_mark.setText("");
+    }//GEN-LAST:event_mid_markFocusGained
+
+    private void final_markFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_final_markFocusGained
+        // TODO add your handling code here:
+        final_mark.setText("");
+    }//GEN-LAST:event_final_markFocusGained
+
+    private void saveMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMarkActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Thank you, In future we will update this feature.");
+    }//GEN-LAST:event_saveMarkActionPerformed
+
+    private void DevelopedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevelopedActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Developed().setVisible(true);
+    }//GEN-LAST:event_DevelopedActionPerformed
+
+    private void TeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeacherActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Teacher().setVisible(true);
+    }//GEN-LAST:event_TeacherActionPerformed
+
+    private void RoutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoutineActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Routine().setVisible(true);
+    }//GEN-LAST:event_RoutineActionPerformed
+
+    private void studentCombobox() {
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/maingubresult", "root", "root");
+            Statement st = con.createStatement();
+            String q = "SELECT * from student";
+            ResultSet rs = st.executeQuery(q);
+
+            studentid.addItem("Select Student");
+            while (rs.next()) {
+              String name = rs.getString("name");
+              studentid.addItem(name); 
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
+    private void subjectCombobox() {
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/maingubresult", "root", "root");
+            Statement st = con.createStatement();
+            String q = "SELECT * from subjects";
+            ResultSet rs = st.executeQuery(q);
+            
+            subjectid.addItem("Select Subject");
+            while (rs.next()) {
+              String name = rs.getString("name");
+              subjectid.addItem(name);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -325,11 +481,13 @@ public class Mark extends javax.swing.JFrame {
     private javax.swing.JButton Dashboard;
     private javax.swing.JButton Developed;
     private javax.swing.JButton Mark;
+    private javax.swing.JButton Routine;
     private javax.swing.JButton Student;
+    private javax.swing.JButton Subject;
+    private javax.swing.JButton Teacher;
     private javax.swing.JTextField assignment;
     private javax.swing.JTextField ct_mark;
     private javax.swing.JTextField final_mark;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -340,6 +498,7 @@ public class Mark extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField mid_mark;
+    private javax.swing.JButton saveMark;
     private javax.swing.JComboBox studentid;
     private javax.swing.JComboBox subjectid;
     // End of variables declaration//GEN-END:variables

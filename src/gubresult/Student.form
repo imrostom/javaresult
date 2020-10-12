@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -115,12 +115,15 @@
                   <Component id="Student" alignment="0" max="32767" attributes="0"/>
                   <Component id="Mark" alignment="1" max="32767" attributes="0"/>
                   <Component id="Dashboard" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Developed" alignment="0" max="32767" attributes="0"/>
+                  <Component id="Subject" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
+                  <Component id="Developed" alignment="0" max="32767" attributes="0"/>
+                  <Component id="Teacher" alignment="0" max="32767" attributes="0"/>
+                  <Component id="Routine" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -131,6 +134,12 @@
                       <Component id="Student" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="Mark" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Subject" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Routine" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Teacher" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="Developed" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -165,12 +174,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MarkActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="Developed">
+            <Component class="javax.swing.JButton" name="Subject">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Developed By"/>
+                <Property name="text" type="java.lang.String" value="Subject"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DevelopedActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SubjectActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -180,6 +189,30 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="V1.0"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="Developed">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Developed By"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DevelopedActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Teacher">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Teacher"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TeacherActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Routine">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Routine"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RoutineActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -353,7 +353,7 @@ public class Register extends javax.swing.JFrame {
             String q = "INSERT INTO student (name, email, phone, address, batch, student_id, username, password) VALUES ('"+nam+"', '"+mail+"', '"+phon+"', '"+add+"', '"+batc+"', '"+student+"', '"+uname+"', '"+pass+"')";
             st.executeUpdate(q);
             
-            JOptionPane.showMessageDialog(null, "The Data inserted successfully");
+            JOptionPane.showMessageDialog(null, "You have to registered successfully");
             
             this.setVisible(false);
             new Dashboard().setVisible(true);

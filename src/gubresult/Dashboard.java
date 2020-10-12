@@ -34,8 +34,11 @@ public class Dashboard extends javax.swing.JFrame {
         Student = new javax.swing.JButton();
         Dashboard = new javax.swing.JButton();
         Mark = new javax.swing.JButton();
-        Developed = new javax.swing.JButton();
+        Subject = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Developed = new javax.swing.JButton();
+        Teacher = new javax.swing.JButton();
+        Routine = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -85,6 +88,16 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        Subject.setText("Subject");
+        Subject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubjectActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel1.setText("V1.0");
+
         Developed.setText("Developed By");
         Developed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +105,19 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("V1.0");
+        Teacher.setText("Teacher");
+        Teacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TeacherActionPerformed(evt);
+            }
+        });
+
+        Routine.setText("Routine");
+        Routine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RoutineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -102,11 +126,14 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(Student, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Mark, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Developed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Subject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(Developed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Teacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Routine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,8 +144,14 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Mark)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Subject)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Routine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Teacher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Developed)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -239,10 +272,28 @@ public class Dashboard extends javax.swing.JFrame {
         new Mark().setVisible(true);
     }//GEN-LAST:event_MarkActionPerformed
 
+    private void SubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubjectActionPerformed
+        this.setVisible(false);
+        new Subject().setVisible(true);
+    }//GEN-LAST:event_SubjectActionPerformed
+
     private void DevelopedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevelopedActionPerformed
+        // TODO add your handling code here:
         this.setVisible(false);
         new Developed().setVisible(true);
     }//GEN-LAST:event_DevelopedActionPerformed
+
+    private void TeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeacherActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Teacher().setVisible(true);
+    }//GEN-LAST:event_TeacherActionPerformed
+
+    private void RoutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoutineActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Routine().setVisible(true);
+    }//GEN-LAST:event_RoutineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +334,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Dashboard;
     private javax.swing.JButton Developed;
     private javax.swing.JButton Mark;
+    private javax.swing.JButton Routine;
     private javax.swing.JButton Student;
+    private javax.swing.JButton Subject;
+    private javax.swing.JButton Teacher;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
