@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 12, 2020 at 06:00 PM
+-- Generation Time: Oct 15, 2020 at 05:25 AM
 -- Server version: 5.7.31-0ubuntu0.18.04.1
 -- PHP Version: 7.3.22-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -89,11 +89,10 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `name`, `email`, `phone`, `address`, `batch`, `username`, `password`, `student_id`) VALUES
-(1, 'Md Rostom Ali', 'rostomali@gmail.com', '03212123', 'Dhaka', 191, 'rostomali', '123456', 1),
-(2, 'Galib Mia', 'galib@gmail.com', '014775225', 'Dhaka', 191, 'galib', '123456', 2),
-(3, '32432', '234234', '234234', '234234', 23234, '234234', '234234', 324234),
-(4, '32432', '234234', '234234', '234234', 23234, '234234', '234234', 324234),
-(5, 'mithila', 'mithila@gmil.com', '34234', '324234', 324234, 'mithila', '123456', 234234);
+(1, 'Md Rostom Ali', 'rostom@gmail.com', '014775225', 'Dhaka', 191, 'rostom', '123456', 191015135),
+(2, 'Galib Mia', 'galib@gmail.com', '014775225', 'Dhaka', 191, 'galib', '123456', 191015012),
+(3, 'Sirajul Islam Tapos', 'tapos@gmail.com', '014775225', 'Dhaka', 191, 'tapos', '234234', 191015017),
+(4, 'Mithila Farjana\n', 'mithila@gmail.com', '014775225', 'Dhaka', 191, 'mithila', '234234', 191015082);
 
 -- --------------------------------------------------------
 
@@ -112,8 +111,8 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `name`, `code`) VALUES
-(1, 'agenda', '0'),
-(2, 'Math', '0');
+(1, 'Bangla', '101'),
+(2, 'Math', '102');
 
 -- --------------------------------------------------------
 
@@ -136,8 +135,8 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id`, `name`, `email`, `phone`, `address`, `username`, `password`) VALUES
-(1, 'Amit Mondol', 'galib@gmail.com', '123123', '213123', '213123', '213123'),
-(2, '213123', '123123', '23123', '12312', '31231', '23123');
+(1, 'Amit Mondol', 'galib@gmail.com', '123123', 'Dhaka', 'amit', '12345'),
+(2, 'Md. Ansarul Islam', 'ansarul@gmail.com', '23123', 'Dhaka', 'ansarul', '12345');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +191,7 @@ ALTER TABLE `routine`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `subjects`
 --
